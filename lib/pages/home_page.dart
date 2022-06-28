@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_pj/pages/pages.dart';
 import 'package:qr_pj/providers/dv_provider.dart';
+import 'package:qr_pj/providers/scan_list_provider.dart';
 import 'package:qr_pj/providers/ui_provider.dart';
 import 'package:qr_pj/widgets/widgets.dart';
 
@@ -10,12 +11,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScanListProvider scanListProvider =
+        Provider.of<ScanListProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: const Center(child: Text("Historial")),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.delete_forever))
+          IconButton(
+              icon: const Icon(Icons.delete_forever),
+              onPressed: () {
+                scanListProvider.deleteAllScans();
+              })
         ],
       ),
       body: const _HomePageBody(),
@@ -33,13 +41,17 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final UiProvider uiProvider = Provider.of<UiProvider>(context);
 
-    // TODO: delete
-    DBProvider.db.database;
+    final ScanListProvider scanListProvider = Provider.of<ScanListProvider>(
+      context,
+      listen: false,
+    );
 
     switch (uiProvider.selectedMenuOpt) {
       case 0:
+        scanListProvider.loadScansByType("geo");
         return const HistorialMapPage();
       case 1:
+        scanListProvider.loadScansByType("http");
         return const AddressesPage();
       default:
         return const HistorialMapPage();

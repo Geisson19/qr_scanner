@@ -23,13 +23,13 @@ class ScanModel {
 
   factory ScanModel.fromMap(Map<String, dynamic> json) => ScanModel(
         id: json["id"],
-        tipo: json["tipo"],
-        valor: json["valor"],
+        tipo: json["type"],
+        valor: json["value"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "tipo": tipo,
-        "valor": valor,
+        "type": tipo,
+        "value": valor,
       };
 }
