@@ -14,7 +14,6 @@
             <data android:mimeType="*/*" />
         </intent>
     </queries>
-
    <application
         android:label="qr_pj"
         android:name="${applicationName}"
@@ -44,6 +43,9 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
-            android:value="2" />        
+            android:value="2" />  
+        <meta-data 
+            android:name="com.google.android.geo.API_KEY" 
+            android:value="??????????????????????????????" />      
     </application>  
 </manifest>

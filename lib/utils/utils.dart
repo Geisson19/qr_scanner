@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:qr_pj/models/scan_model.dart';
 import "package:url_launcher/url_launcher.dart";
 
@@ -11,6 +11,6 @@ launchURL(BuildContext context, ScanModel scan) async {
       throw 'Could not launch $url';
     }
   } else {
-    print("geolocation");
+    Navigator.pushNamed(context, "map", arguments: scan);
   }
 }

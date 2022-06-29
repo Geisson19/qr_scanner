@@ -6,7 +6,7 @@ class ScanListProvider extends ChangeNotifier {
 
   final String _selectedScanType = 'http';
 
-  newScan(String value) async {
+  Future<ScanModel> newScan(String value) async {
     final newScan = ScanModel(
       valor: value,
     );
@@ -18,6 +18,7 @@ class ScanListProvider extends ChangeNotifier {
       scans.add(newScan);
     }
     notifyListeners();
+    return newScan;
   }
 
   loadScans() async {
